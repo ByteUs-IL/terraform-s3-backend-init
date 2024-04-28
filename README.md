@@ -21,7 +21,7 @@
     <ul>
       <li><strong>name</strong>: The name of the S3 bucket.</li>
       <li><strong>create_bucket</strong>: (Optional) A boolean value indicating whether to create a new bucket (<code>true</code>) or use an existing one (<code>false</code>). Default is <code>true</code>.</li>
-      <li><strong>versioning</strong>: (Optional) The versioning configuration for the S3 bucket. Default is <code>"Enabled"</code>.</li>
+      <li><strong>versioning</strong>: (Optional) The versioning configuration for the S3 bucket. Default is <code>"Enabled"</code>. Options include `"Enabled"`, `"Suspended"`, or `"Disabled"`. Default is `"Enabled"`.</li>
     </ul>
   </li>
   <li><strong>dynamodb_table_name</strong>: The name of the DynamoDB table that will hold the state lock.</li>

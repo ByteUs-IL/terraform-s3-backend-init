@@ -11,6 +11,11 @@ variable "s3_backend" {
     versioning = optional(string, "Enabled")
   })
   description = "The configuration of the S3 backend that will hold the tf state files"
+
+  validation {
+    condition     = contains(["Enabled", "Suspended", "Disabled"], var.s3_backend.versioning)
+    error_message = "Invalid input for versioning, options: \"Enabled\", \"Suspended\", \"Disabled\""
+  }
 }
 
 variable "dynamodb_table_name" {
