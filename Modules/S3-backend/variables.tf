@@ -1,8 +1,7 @@
 variable "bucket" {
   type = object({
-    name = string
+    name        = string
     does_exists = bool
   })
   description = "the name of S3 bucket and if it exits"
-  default = {name = "tfstate-byte-me", does_exists = false}
 }
