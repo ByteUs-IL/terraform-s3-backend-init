@@ -12,8 +12,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = "network"
-      Terraform   = true
+      Terraform = true
     }
   }
 }
