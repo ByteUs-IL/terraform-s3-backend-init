@@ -1,7 +1,7 @@
 # Create S3 bucket if it doesn't exists
 module "s3" {
   source = "./Modules/S3-backend"
-  count = var.bucket.does_exists == true ? 0 : 1
+  count  = var.bucket.does_exists == true ? 0 : 1
   bucket = var.bucket
 }
 
@@ -15,7 +15,7 @@ resource "aws_dynamodb_table" "backend" {
   attribute {
     name = "LockID"
     type = "S"
-  }  
+  }
   tags = {
     Name = var.dynamodb_table_name
   }
