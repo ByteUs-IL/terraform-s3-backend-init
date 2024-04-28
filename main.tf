@@ -1,8 +1,9 @@
 # Create S3 bucket if it doesn't exists
-module "s3" {
-  source = "./Modules/S3-backend"
-  count  = var.bucket.does_exists == true ? 0 : 1
-  bucket = var.bucket
+module "s3_backend" {
+  source = "./modules/s3_backend"
+  count  = var.s3_backend.create_bucket ? 1 : 0
+
+  s3_backend = var.s3_backend
 }
 
 # Create DynamoDB table

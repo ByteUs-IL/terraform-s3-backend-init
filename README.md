@@ -9,9 +9,9 @@ It can also get: dynamodb_table_name.
 
 ### Example of creating new bucket (tfvars file)
 ```
-bucket = {
+s3_backend = {
     name = "tfstate-byte-me-123", 
-    does_exists = false
+    create_bucket = true
     }
 dynamodb_table_name = "backend-tfstate-table"
 ```
@@ -19,7 +19,7 @@ dynamodb_table_name = "backend-tfstate-table"
 ```
 bucket = {
     name = "terraform-backend-s3-test", 
-    does_exists = true
+    create_bucket = false
     }
 dynamodb_table_name = "backend-tfstate-table"
 ```

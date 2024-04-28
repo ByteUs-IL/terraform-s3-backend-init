@@ -1,7 +1,9 @@
-variable "bucket" {
+variable "s3_backend" {
   type = object({
-    name        = string
-    does_exists = bool
+    name          = string
+    create_bucket = bool
+
+    versioning = optional(string, "Enabled")
   })
   description = "the name of S3 bucket and if it exits"
 }

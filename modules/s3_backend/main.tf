@@ -7,10 +7,10 @@ resource "aws_kms_key" "s3_decrypt_key" {
 
 # Create S3 bucket if it doesn't exist
 resource "aws_s3_bucket" "backend" {
-  bucket        = var.bucket.name
+  bucket        = var.s3_backend.name
   force_destroy = true
   tags = {
-    Name = var.bucket.name
+    Name = var.s3_backend.name
   }
 }
 
@@ -27,7 +27,7 @@ resource "aws_s3_bucket_public_access_block" "backend" {
 resource "aws_s3_bucket_versioning" "backend" {
   bucket = aws_s3_bucket.backend.id
   versioning_configuration {
-    status = "Enabled"
+    status = var.s3_backend.versioning
   }
 }
 
