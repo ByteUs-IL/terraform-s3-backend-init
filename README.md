@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ByteUS' terraform-init</title>
-</head>
-<body>
-
-<h1>Terraform Init</h1>
+<h1>ByteUS' terraform-init</h1>
 
 <p>This module deploys the Terraform Backend, which sets up prerequisite resources for a managed tfstate file. It includes creating an S3 bucket to host the tfstate file (with encryption and versioning enabled), a KMS key to encrypt the S3 bucket, and a DynamoDB table to host a Lock object. It can either create a new S3 bucket or utilize an existing one.</p>
 
