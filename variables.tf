@@ -10,10 +10,10 @@ variable "s3_backend" {
 
     versioning = optional(string, "Enabled")
   })
-  description = "the name of S3 bucket and if it exits"
+  description = "The configuration of the S3 backend that will hold the tf state files"
 }
 
 variable "dynamodb_table_name" {
+  description = "The name of the DynamoDB table that will hold the state lock"
   type        = string
-  description = "the name of the dynamodb table"
 }

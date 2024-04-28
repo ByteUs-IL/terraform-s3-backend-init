@@ -1,31 +1,43 @@
-# terraform-init
-The module deploys Terraform-Backend which is the prerequisites resources for a managed tfstate file.
-It deploys: S3 bucket to host the tfstate file (with encryption and versioning enabled), a KMS key to encrypt the S3, and a dynamoDB table to host a Lock object.
-It can create a new S3 bucket or receive an existing one.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ByteUS' terraform-init</title>
+</head>
+<body>
 
-## inputs
-The module must receive an object of a bucket - defining the bucket's name and it's existsance.
-It can also get: dynamodb_table_name.
+<h1>Terraform Init</h1>
 
-### Example of creating new bucket (tfvars file)
-```
-aws_region = "eu-west-1"
-s3_backend = {
-    name = "tfstate-byte-me-123"
-    }
-dynamodb_table_name = "backend-tfstate-table"
-```
-### Example of using existing bucket (tfvars file)
-```
-aws_region = "eu-west-1"
-s3_backend = {
-    name = "terraform-backend-s3-test",
-    create_bucket = false
-    }
-dynamodb_table_name = "backend-tfstate-table"
-```
+<p>This module deploys the Terraform Backend, which sets up prerequisite resources for a managed tfstate file. It includes creating an S3 bucket to host the tfstate file (with encryption and versioning enabled), a KMS key to encrypt the S3 bucket, and a DynamoDB table to host a Lock object. It can either create a new S3 bucket or utilize an existing one.</p>
 
-## outputs
-The module returns the aws_s3_bucket_arn, aws_dynamodb_table_arn, and aws_kms_key_id.
+<h2>Inputs</h2>
 
-### ~ Kurtz takes credit ~
+<p>The module requires the following inputs:</p>
+
+<ul>
+  <li><strong>aws_region</strong>: The AWS region in which the infrastructure will be deployed.</li>
+  <li><strong>s3_backend</strong>: An object specifying details about the S3 bucket. It includes:
+    <ul>
+      <li><strong>name</strong>: The name of the S3 bucket.</li>
+      <li><strong>create_bucket</strong>: (Optional) A boolean value indicating whether to create a new bucket (<code>true</code>) or use an existing one (<code>false</code>). Default is <code>true</code>.</li>
+      <li><strong>versioning</strong>: (Optional) The versioning configuration for the S3 bucket. Default is <code>"Enabled"</code>.</li>
+    </ul>
+  </li>
+  <li><strong>dynamodb_table_name</strong>: The name of the DynamoDB table that will hold the state lock.</li>
+</ul>
+
+<h2>Outputs</h2>
+
+<p>The module provides the following outputs:</p>
+
+<ul>
+  <li><strong>aws_kms_key_id</strong>: The id of the Customer-Managed KMS key encrypting the S3 backend.</li>
+  <li><strong>aws_s3_bucket_id</strong>: The id of the S3 bucket holding the state file.</li>
+  <li><strong>aws_dynamodb_table_arn</strong>: The ARN of DynamoDB table holding the state lock.</li>
+</ul>
+
+<p>~ Kurtz takes credit ~</p>
+
+</body>
+</html>
