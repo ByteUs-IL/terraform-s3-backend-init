@@ -7,16 +7,12 @@ module "s3" {
 
 # Create DynamoDB table
 resource "aws_dynamodb_table" "backend" {
-  name           = var.dynamodb_table_name
-  billing_mode   = "PROVISIONED"
-  read_capacity  = "30"
-  write_capacity = "30"
-  hash_key       = "LockID"
+  name         = var.dynamodb_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+
   attribute {
     name = "LockID"
     type = "S"
-  }
-  tags = {
-    Name = var.dynamodb_table_name
   }
 }
