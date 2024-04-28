@@ -6,7 +6,7 @@ variable "aws_region" {
 variable "s3_backend" {
   type = object({
     name          = string
-    create_bucket = bool
+    create_bucket = optional(bool, true)
 
     versioning = optional(string, "Enabled")
   })
