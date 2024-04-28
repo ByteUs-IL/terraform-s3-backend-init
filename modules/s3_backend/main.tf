@@ -1,22 +1,18 @@
 # KMS key to decrypt the S3
 resource "aws_kms_key" "s3_decrypt_key" {
-  description             = "This key is used to encrypt bucket objects"
-  deletion_window_in_days = 10
-  enable_key_rotation     = true
+  description         = "The KMS key used to encrypt the terraform s3 backend bucket"
+  enable_key_rotation = true
 }
 
 # Create S3 bucket if it doesn't exist
 resource "aws_s3_bucket" "backend" {
-  bucket        = var.s3_backend.name
-  force_destroy = true
-  tags = {
-    Name = var.s3_backend.name
-  }
+  bucket = var.s3_backend.name
 }
 
 # Block public access
 resource "aws_s3_bucket_public_access_block" "backend" {
-  bucket                  = aws_s3_bucket.backend.id
+  bucket = aws_s3_bucket.backend.id
+
   block_public_acls       = true
   block_public_policy     = true
   ignore_public_acls      = true
@@ -26,6 +22,7 @@ resource "aws_s3_bucket_public_access_block" "backend" {
 # Enable S3 versioning
 resource "aws_s3_bucket_versioning" "backend" {
   bucket = aws_s3_bucket.backend.id
+
   versioning_configuration {
     status = var.s3_backend.versioning
   }
