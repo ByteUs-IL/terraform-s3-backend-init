@@ -9,12 +9,12 @@ terraform {
 
 # Configure the AWS Provider on Ireland
 provider "aws" {
-  region = "eu-west-1"
+  region = var.aws_region
+
   default_tags {
     tags = {
-      Environment = "Dev"
+      Environment = "network"
       Terraform   = true
-      Application = "Terraform-Backend"
     }
   }
 }
