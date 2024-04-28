@@ -17,7 +17,7 @@ variable "s3_backend" {
     error_message = "Invalid input for versioning, options: \"Enabled\", \"Suspended\", \"Disabled\""
   }
   validation {
-    condition     = name != null || create_bucket == false
+    condition     = var.s3_backend.name != null || var.s3_backend.create_bucket == false
     error_message = "A bucket name must be specified if `create_bucket` is `true` or unspecified"
   }
 }
