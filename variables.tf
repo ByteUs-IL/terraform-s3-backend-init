@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "s3_backend" {
   type = object({
-    name          = string
+    name          = optional(string)
     create_bucket = optional(bool, true)
 
     versioning = optional(string, "Enabled")
@@ -15,6 +15,10 @@ variable "s3_backend" {
   validation {
     condition     = contains(["Enabled", "Suspended", "Disabled"], var.s3_backend.versioning)
     error_message = "Invalid input for versioning, options: \"Enabled\", \"Suspended\", \"Disabled\""
+  }
+  validation {
+    condition     = name != null || create_bucket == false
+    error_message = "A bucket name must be specified if `create_bucket` is `true` or unspecified"
   }
 }
 

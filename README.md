@@ -19,10 +19,11 @@
   <li><strong>aws_region</strong>: The AWS region in which the infrastructure will be deployed.</li>
   <li><strong>s3_backend</strong>: An object specifying details about the S3 bucket. It includes:
     <ul>
-      <li><strong>name</strong>: The name of the S3 bucket.</li>
+      <li><strong>name</strong>: (Optional) The name of the S3 bucket. Required if `create_bucket` is `true` or unspecified.</li>
       <li><strong>create_bucket</strong>: (Optional) A boolean value indicating whether to create a new bucket (<code>true</code>) or use an existing one (<code>false</code>). Default is <code>true</code>.</li>
-      <li><strong>versioning</strong>: (Optional) The versioning configuration for the S3 bucket. Default is <code>"Enabled"</code>. Options include `"Enabled"`, `"Suspended"`, or `"Disabled"`. Default is `"Enabled"`.</li>
+      <li><strong>versioning</strong>: (Optional) The versioning configuration for the S3 bucket. Options include <code>"Enabled"</code>, <code>"Suspended"</code>, or <code>"Disabled"</code>. Default is <code>"Enabled"</code>.</li>
     </ul>
+    <p><strong>Note:</strong> Input validation ensures that a bucket name must be specified if `create_bucket` is `true` or unspecified.</p>
   </li>
   <li><strong>dynamodb_table_name</strong>: The name of the DynamoDB table that will hold the state lock.</li>
 </ul>
