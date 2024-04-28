@@ -7,12 +7,6 @@ variable "bucket" {
   default     = { name = "tfstate-byte-me", does_exists = false }
 }
 
-variable "s3_decrypt_key_name" {
-  type        = string
-  description = "the kms key ARN to decrypt the tfstate file"
-  default     = "tfstate_s3_decrypt_key"
-}
-
 variable "dynamodb_table_name" {
   type        = string
   description = "the name of the dynamodb table"

@@ -5,7 +5,7 @@ It can create a new S3 bucket or receive an existing one.
 
 ## inputs
 The module must receive an object of a bucket - defining the bucket's name and it's existsance.
-It can also get: dynamodb_table_name, s3_decrypt_key_name.
+It can also get: dynamodb_table_name.
 
 ### Example of creating new bucket (tfvars file)
 ```

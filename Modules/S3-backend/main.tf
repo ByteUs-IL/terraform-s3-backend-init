@@ -3,9 +3,6 @@ resource "aws_kms_key" "s3_decrypt_key" {
   description             = "This key is used to encrypt bucket objects"
   deletion_window_in_days = 10
   enable_key_rotation     = true
-  tags = {
-    Name = var.s3_decrypt_key_name
-  }
 }
 
 # Create S3 bucket if it doesn't exist
