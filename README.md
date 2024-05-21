@@ -1,6 +1,6 @@
 <h1>ByteUS' terraform-init</h1>
 
-<p>This module deploys the Terraform Backend, which sets up prerequisite resources for a managed tfstate file. It includes creating an S3 bucket to host the tfstate file (with encryption and versioning enabled), a KMS key to encrypt the S3 bucket, and a DynamoDB table to host a Lock object. It can either create a new S3 bucket or utilize an existing one.</p>
+<p>This module deploys the Terraform Backend, which sets up prerequisite resources for a managed tfstate file. It includes creating an S3 bucket to host the tfstate file (with encryption and versioning enabled), a KMS key to encrypt the S3 bucket, a DynamoDB table to host a Lock object and a IAM policy that grants access to those resources. It can either create a new S3 bucket or utilize an existing one.</p>
 
 <h2>Inputs</h2>
 
@@ -17,6 +17,7 @@
     <p><strong>Note:</strong> Input validation ensures that a bucket name must be specified if `create_bucket` is `true` or unspecified.</p>
   </li>
   <li><strong>dynamodb_table_name</strong>: The name of the DynamoDB table that will hold the state lock.</li>
+  <li><strong>iam_policy_name</strong>: The name of the IAM policy that grants access to the backend resources.</li>
 </ul>
 
 <h2>Outputs</h2>
@@ -24,9 +25,10 @@
 <p>The module provides the following outputs:</p>
 
 <ul>
-  <li><strong>aws_kms_key_id</strong>: The id of the Customer-Managed KMS key encrypting the S3 backend.</li>
-  <li><strong>aws_s3_bucket_id</strong>: The id of the S3 bucket holding the state file.</li>
-  <li><strong>aws_dynamodb_table_arn</strong>: The ARN of DynamoDB table holding the state lock.</li>
+  <li><strong>aws_kms_key_arn</strong>: The arn of the Customer-Managed KMS key encrypting the S3 backend.</li>
+  <li><strong>aws_s3_bucket_id</strong>: The id (name) of the S3 bucket holding the state file.</li>
+  <li><strong>aws_dynamodb_table_arn</strong>: The arn of DynamoDB table holding the state lock.</li>
+  <li><strong>iam_policy_arn</strong>: The arn of the IAM policy that grants access to the backend resources.</li>
 </ul>
 
 <p>~ Kurtz takes credit ~</p>

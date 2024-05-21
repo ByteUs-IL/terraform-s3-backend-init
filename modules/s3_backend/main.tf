@@ -2,6 +2,9 @@
 resource "aws_kms_key" "s3_decrypt_key" {
   description         = "The KMS key used to encrypt the terraform s3 backend bucket"
   enable_key_rotation = true
+  tags = {
+    s3_bucket_name = "${var.s3_backend.name}"
+  }
 }
 
 # Create S3 bucket if it doesn't exist
